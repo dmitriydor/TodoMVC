@@ -1,16 +1,5 @@
-﻿
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-header {
+﻿header {
     background-color: #F2D97E;
-    margin-bottom:30px;
 }
 header .navbar-brand {
     font-family: 'Bungee Shade', cursive;
@@ -33,7 +22,6 @@ body {
     font-family: 'Amiko', sans-serif;
     color: #AC6A6A;
     background-color: #F9F3F3;
-    height:100vh;
     position:relative;
 }
 main {
@@ -49,15 +37,16 @@ a {
 a:hover {
     color:#ce7f7f;
 }
-.body-main{
-    position:relative;
+.add-todo {
+    font-size:26px;
 }
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
-    background-color: #F9F3F3;
+.slider {
+    font-size:20px;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
