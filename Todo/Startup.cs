@@ -5,6 +5,7 @@ using Todo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Todo.Services;
 
 namespace Todo
 {
@@ -22,6 +23,7 @@ namespace Todo
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<ITodoItemManager, TodoItemManager>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
