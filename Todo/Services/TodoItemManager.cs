@@ -25,25 +25,25 @@ namespace Todo.Services
             }
             return todoDb;
         }
-        public TodoItem Create(TodoItem todo)
+        public TodoItem Update(TodoItem todo)
         {
-            if(todo.Id == 0)
+            if (todo.Id == 0)
             {
                 _context.TodoItems.Add(todo);
             }
-            return todo;
-        }
-        public TodoItem Update(TodoItem todo)
-        {
-            TodoItem todoDb = _context.TodoItems.FirstOrDefault(t => t.Id == todo.Id);
-            if(todoDb != null)
+            else
             {
-                todoDb.Name = todo.Name;
-                todoDb.Description = todo.Description;
-                todoDb.Date = todo.Date;
-                todoDb.Priority = todo.Priority;
-                todoDb.IsCompleted = todo.IsCompleted;
+                TodoItem todoDb = _context.TodoItems.FirstOrDefault(t => t.Id == todo.Id);
+                if(todoDb != null)
+                {
+                    todoDb.Name = todo.Name;
+                    todoDb.Description = todo.Description;
+                    todoDb.Date = todo.Date;
+                    todoDb.Priority = todo.Priority;
+                    todoDb.IsCompleted = todo.IsCompleted;
+                }
             }
+            _context.SaveChanges();
             return todo;
         }
 

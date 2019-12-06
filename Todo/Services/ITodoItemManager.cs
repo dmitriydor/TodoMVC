@@ -8,8 +8,8 @@ namespace Todo.Services
 {
     public interface ITodoItemManager
     {
+        public IQueryable<TodoItem> TodoItems { get; }
         public TodoItem Delete(int id);
-        public TodoItem Create(TodoItem todo);
         public TodoItem Update(TodoItem todo);
     }
 }

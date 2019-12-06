@@ -15,6 +15,12 @@ namespace Todo.Controllers
         {
             _todoItemManager = todoItemManager;
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View(_todoItemManager.TodoItems.FirstOrDefault(t => t.Id == id));
+        }
+        [HttpPost]
         public IActionResult Edit(TodoItem todo)
         {
             if(ModelState.IsValid)
@@ -27,9 +33,9 @@ namespace Todo.Controllers
             }
             return View(todo);
         }
-        public IActionResult AddTodoItem(TodoItem todo)
+        public IActionResult AddTodoItem()
         {
-            return View(todo);
+            return View("Edit", new TodoItem() { Date = DateTime.Today});
         }
     }
 }
