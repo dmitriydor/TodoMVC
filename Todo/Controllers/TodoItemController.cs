@@ -35,7 +35,26 @@ namespace Todo.Controllers
         }
         public IActionResult AddTodoItem()
         {
-            return View("Edit", new TodoItem() { Date = DateTime.Today});
+            return View("Edit", new TodoItem());
+        }
+        public IActionResult Delete(int id)
+        {
+            _todoItemManager.Delete(id);
+            return Redirect("/Main/Index");
+        }
+        public IActionResult ToComplete(int id)
+        {
+            var todo = _todoItemManager.TodoItems.FirstOrDefault(t => t.Id == id);
+            if(todo.IsCompleted == false) 
+            {
+                todo.IsCompleted = true;
+            }
+            else
+            {
+                todo.IsCompleted = false;
+            }
+            _todoItemManager.Update(todo);
+            return Redirect("/Main/Index");
         }
     }
 }

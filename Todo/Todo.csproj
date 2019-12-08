@@ -17,6 +17,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Infrastructure\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
 

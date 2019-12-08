@@ -18,7 +18,7 @@ namespace Todo.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<TodoItem> list = _context.TodoItems.ToList();
+            IEnumerable<TodoItem> list = from todo in _context.TodoItems orderby todo.IsCompleted select todo;//добавить вывод только для текущего дня недели
             return View(list);
         }
     }

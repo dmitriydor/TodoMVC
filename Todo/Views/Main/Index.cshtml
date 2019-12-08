@@ -1,29 +1,42 @@
 ﻿@model  IEnumerable<TodoItem>
 <div>
-    <div class="text-center slider">
-        <span><a></a>Friday<a></a></span>
+    <div class="slider justify-content-center">
+        <a class="slider-left mx-2"></a>
+        <span>@DateTime.Today.DayOfWeek @DateTime.Today.ToShortDateString()</span>
+        <a class="slider-right mx-2"></a>
     </div>
     @foreach(var todo in Model)
     {
     <div class="card my-3">
-        <div class="card-header d-flex justify-content-between">
-            <h4>@todo.Name</h4>
+        <div class="card-header d-flex">
+            <div class="vertical-align flex-grow-1"><span>@todo.Name</span></div>
             @if (todo.Priority == 3)
-            {
-                <div class="btn btn-danger" style="width:15%;">Heidght</div>
-            }
+            {<div class="btn-heidght" >Heidght</div>}
             @if (todo.Priority == 2)
-            {
-                <div class="btn btn-warning" style="width:15%;">Medium</div>
-            }
+            {<div class="btn-medium" >Medium</div>}
             @if (todo.Priority == 1)
-            {
-                <div class="btn btn-success" style="width:15%;">Low</div>
-            }
+            {<div class="btn-low">Low</div>}
+            @if (todo.IsCompleted == true)
+            {<div class="completed">Completed</div>}
         </div>
         <div class="card-body">
             <p class="card-text">@todo.Description</p>
-            <a asp-controller="TodoItem" asp-action="Edit" class="btn btn-primary">Edit</a>
+            <div class="d-flex flex-row-reverse">
+                <a asp-controller="TodoItem" asp-action="Edit" asp-route-id="@todo.Id" class="btn">Edit</a>
+                <a asp-controller="TodoItem" asp-action="Delete" asp-route-id="@todo.Id" class="btn">Delete</a>
+                @if (todo.IsCompleted == false)
+                {
+                    <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
+                        To complete
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
+                        No completed
+                    </a>
+                }
+            </div>
         </div>
     </div>
     }

@@ -38,9 +38,7 @@ namespace Todo.Services
                 {
                     todoDb.Name = todo.Name;
                     todoDb.Description = todo.Description;
-                    todoDb.Date = todo.Date;
                     todoDb.Priority = todo.Priority;
-                    todoDb.IsCompleted = todo.IsCompleted;
                 }
             }
             _context.SaveChanges();

@@ -49,4 +49,59 @@ a:hover {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+.card {
+    background-color: #F9F3F3;
+    border: 4px solid #f0d795;
+}
+.completed {
+    background-color:rgba(255, 255, 255, 0.80);
+    margin:0px 0px 0px 4px;
+}
+.vertical-align, .slider{
+    display:flex;
+    align-items:center;
+    font-size:18px;
+}
+.btn {
+    color: #AC6A6A;
+}
+.btn:hover{
+
+}
+.btn-heidght, .btn-low, .btn-medium, .completed {
+    border-radius: 5px;
+    text-align: center;
+    vertical-align:middle;
+    display:flex;
+    justify-content:center;
+    padding:3px 7px;
+}
+.btn-heidght {
+    background-color: #e9b48a;
+}
+.btn-low {
+    background-color:#c3e68a;
+}
+.btn-medium {
+    background-color:#e5e48a;
+}
+.slider-left {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-right: 25px solid #f0d795;
+    border-bottom: 15px solid transparent;
+}
+.slider-right {
+    display:inline-block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-left: 25px solid #f0d795;
+    border-bottom: 15px solid transparent;
+}
+.slider-left:hover,.slider-right:hover {
+    opacity:.5;
+}
 
