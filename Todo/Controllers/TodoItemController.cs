@@ -35,7 +35,7 @@ namespace Todo.Controllers
         }
         public IActionResult AddTodoItem()
         {
-            return View("Edit", new TodoItem());
+            return View("Edit", new TodoItem()); ;
         }
         public IActionResult Delete(int id)
         {

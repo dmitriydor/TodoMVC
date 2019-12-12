@@ -1,19 +1,14 @@
-﻿@model  IEnumerable<TodoItem>
-<div>
-    <div class="slider justify-content-center">
-        <a class="slider-left mx-2"></a>
-        <span>@DateTime.Today.DayOfWeek @DateTime.Today.ToShortDateString()</span>
-        <a class="slider-right mx-2"></a>
-    </div>
-    @foreach(var todo in Model)
-    {
+﻿@model IEnumerable<TodoItem>
+@{ ViewData["Title"] = "History";}
+@foreach (var todo in Model)
+{
     <div class="card my-3">
         <div class="card-header d-flex">
             <div class="vertical-align flex-grow-1"><span>@todo.Name</span></div>
             @if (todo.Priority == 3)
-            {<div class="btn-heidght" >Heidght</div>}
+            {<div class="btn-heidght">Heidght</div>}
             @if (todo.Priority == 2)
-            {<div class="btn-medium" >Medium</div>}
+            {<div class="btn-medium">Medium</div>}
             @if (todo.Priority == 1)
             {<div class="btn-low">Low</div>}
             @if (todo.IsCompleted == true)
@@ -38,12 +33,5 @@
                 }
             </div>
         </div>
-        <div class="card-footer">
-            <span>@todo.Date.ToShortDateString()</span>
-        </div>
     </div>
-    }
-    <a class="nav-link mx-5" asp-controller="TodoItem" asp-action="AddTodoItem">
-        <div class="text-center add-todo">+ Add To Do</div>
-    </a>
-</div>
+}

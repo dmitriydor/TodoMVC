@@ -15,5 +15,6 @@ namespace Todo.Models
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public int Priority { get; set; }
+        public string Username { get; set; }
     }
 }
