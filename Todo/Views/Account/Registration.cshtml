@@ -1,0 +1,34 @@
+﻿@model Todo.ViewModel.RegistrationModel
+@{
+    ViewData["title"] = "Registration";
+}
+<div class="d-flex justify-content-center">
+    <div class="col-5">
+        <form asp-action="Registration" method="post">
+            <div class="form-group">
+                <label asp-for="FirstName">Firstname</label>
+                <div><span asp-validation-for="FirstName" class="text-danger"></span></div>
+                <input asp-for="FirstName" type="text" class="form-control" />
+            </div><div class="form-group">
+                <label asp-for="LastName">Lastname</label>
+                <div><span asp-validation-for="LastName" class="text-danger"></span></div>
+                <input asp-for="LastName" type="text" class="form-control" />
+            </div><div class="form-group">
+                <label asp-for="Email">Email</label>
+                <div><span asp-validation-for="Email" class="text-danger"></span></div>
+                <input asp-for="Email" type="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                <input asp-for="Password" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm password</label>
+                <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+            </div>
+            <button class="btn btn-low" type="submit">Registration</button>
+        </form>
+    </div>
+</div>

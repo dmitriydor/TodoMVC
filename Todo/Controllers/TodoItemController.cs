@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using Todo.Services;
 
 namespace Todo.Controllers
 {
+    [Authorize]
     public class TodoItemController:Controller
     {
         private ITodoItemManager _todoItemManager;
@@ -31,7 +33,7 @@ namespace Todo.Controllers
                     return Redirect("/Main/Index");
                 }
             }
-            return View(todo);
+            return NotFound();
         }
         public IActionResult AddTodoItem()
         {

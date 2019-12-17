@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using Todo.Services;
 
 namespace Todo.Controllers
 {
+    [Authorize]
     public class MainController:Controller
     {
         private ITodoItemManager _context;

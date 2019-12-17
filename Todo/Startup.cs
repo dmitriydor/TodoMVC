@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Todo.Services;
 using Todo.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Todo
 {
@@ -24,7 +25,12 @@ namespace Todo
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            });
             services.AddScoped<ITodoItemManager, TodoItemManager>();
+            services.AddScoped<IUserManager, UserManager>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -46,7 +52,8 @@ namespace Todo
 
             app.UseRouting();
 
-
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
