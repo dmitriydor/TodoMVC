@@ -21,17 +21,6 @@ namespace Todo.Repositories
 
         public IQueryable<User> Users => _context.Users;
 
-        public async Task Authenticate(string email, HttpContext context)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, email)
-            };
-            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultRoleClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
-            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
-
         public bool Create(User user)
         {
             var userDb = _context.Users.FirstOrDefault(u => u.Email == user.Email);
