@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using Todo.Data;
 using Todo.Models;
+using Todo.Repositories;
 
-namespace Todo.Services
+namespace Todo.Repositories
 {
     public class TodoItemRepository : ITodoItemRepository
     {

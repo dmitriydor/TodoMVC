@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todo.Models;
+using Todo.Repositories;
 using Todo.Services;
 using Todo.ViewModel;
 
@@ -13,10 +14,12 @@ namespace Todo.Controllers
     public class AccountController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAuthenticateService _authenticateService;
 
-        public AccountController(IUserRepository userRepository)
+        public AccountController(IUserRepository userRepository, IAuthenticateService authenticateService)
         {
             _userRepository = userRepository;
+            _authenticateService = authenticateService;
         }
 
         [HttpGet]
@@ -43,7 +46,7 @@ namespace Todo.Controllers
                             Lastname = model.LastName,
                             RegDate = DateTime.Today
                         });
-                    await _userRepository.Authenticate(model.Email, HttpContext);
+                    await _authenticateService.Authenticate(model.Email, HttpContext);
                     return RedirectToAction("Index", "Main");
                 }
 
@@ -69,7 +72,7 @@ namespace Todo.Controllers
                     u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
-                    await _userRepository.Authenticate(model.Email, HttpContext);
+                    await _authenticateService.Authenticate(model.Email, HttpContext);
                     return RedirectToAction("Index", "Main");
                 }
 
@@ -80,7 +83,7 @@ namespace Todo.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditUser(string email)
+        public async Task<IActionResult> EditUser(string email)
         {
             return BadRequest();
         }
@@ -93,7 +96,7 @@ namespace Todo.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _authenticateService.Logout(HttpContext);
             return RedirectToAction("Login", "Account");
         }
     }

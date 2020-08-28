@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Models
 {
-    public class User
+    public sealed class User
     {
         //может быть лучше добавить id пользователя как ключ
-        [Key] public string Email { get; set; }
-
+        [Key] 
+        public string Email { get; set; }
         public string Password { get; set; }
         public string About { get; set; }
         public DateTime DateOfBirth { get; set; }

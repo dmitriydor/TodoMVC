@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Todo.Models;
 
-namespace Todo.Services
+namespace Todo.Repositories
 {
     public interface ITodoItemRepository
     {

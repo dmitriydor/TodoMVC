@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Todo.Data;
 using Todo.Models;
 
-namespace Todo.Services
+namespace Todo.Repositories
 {
     public class UserRepository : IUserRepository
     {

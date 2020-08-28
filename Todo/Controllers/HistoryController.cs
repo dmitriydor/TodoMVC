@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Todo.Services;
+using Todo.Repositories;
 
 namespace Todo.Controllers
 {
