@@ -1,56 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Threading.Tasks;
-using Todo.Models;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Todo.Data;
+using Todo.Models;
 
 namespace Todo.Services
 {
-    public class UserManager : IUserManager
+    public class UserRepository : IUserRepository
     {
-        private AppDbContext _context;
-        public UserManager(AppDbContext context)
+        private readonly AppDbContext _context;
+
+        public UserRepository(AppDbContext context)
         {
             _context = context;
         }
+
         public IQueryable<User> Users => _context.Users;
 
-        public async Task Authenticate(string email, Microsoft.AspNetCore.Http.HttpContext context)
+        public async Task Authenticate(string email, HttpContext context)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType,email)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, email)
             };
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultRoleClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(id));
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultRoleClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
         public bool Create(User user)
         {
             var userDb = _context.Users.FirstOrDefault(u => u.Email == user.Email);
-            if(userDb == null)
+            if (userDb == null)
             {
                 _context.Add(user);
                 _context.SaveChanges();
                 return true;
             }
+
             return false;
         }
 
         public bool Delete(string email)
         {
             var userDb = _context.Users.FirstOrDefault(u => u.Email == email);
-            if(userDb != null)
+            if (userDb != null)
             {
                 _context.Users.Remove(userDb);
                 _context.SaveChanges();
                 return true;
             }
+
             return false;
         }
 

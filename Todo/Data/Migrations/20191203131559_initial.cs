@@ -8,8 +8,8 @@ namespace Todo.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TodoItems",
-                columns: table => new
+                "TodoItems",
+                table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -19,14 +19,11 @@ namespace Todo.Data.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     Priority = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TodoItems", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_TodoItems", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
+                "Users",
+                table => new
                 {
                     Username = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: true),
@@ -37,19 +34,16 @@ namespace Todo.Data.Migrations
                     Firstname = table.Column<string>(nullable: true),
                     Lastname = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Username);
-                });
+                constraints: table => { table.PrimaryKey("PK_Users", x => x.Username); });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TodoItems");
+                "TodoItems");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                "Users");
         }
     }
 }

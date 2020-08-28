@@ -1,22 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Todo.Services;
 
 namespace Todo.Controllers
 {
-    public class HistoryController:Controller
+    public class HistoryController : Controller
     {
-        private ITodoItemManager _todoItemManager;
-        public HistoryController(ITodoItemManager todoItemManager)
+        private readonly ITodoItemRepository _todoItemRepository;
+
+        public HistoryController(ITodoItemRepository todoItemRepository)
         {
-            _todoItemManager = todoItemManager;
+            _todoItemRepository = todoItemRepository;
         }
+
         public IActionResult Index()
         {
-            return View(_todoItemManager.TodoItems.OrderBy(t=>t.Date).AsEnumerable());
+            return View(_todoItemRepository.TodoItems.OrderBy(t => t.Date).AsEnumerable());
         }
     }
 }

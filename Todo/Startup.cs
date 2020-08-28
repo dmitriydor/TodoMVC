@@ -1,13 +1,13 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Todo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Todo.Data;
 using Todo.Services;
-using Todo.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Todo
 {
@@ -27,10 +27,10 @@ namespace Todo
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                options.LoginPath = new PathString("/Account/Login");
             });
-            services.AddScoped<ITodoItemManager, TodoItemManager>();
-            services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<ITodoItemRepository, TodoItemRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -47,6 +47,7 @@ namespace Todo
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -58,8 +59,8 @@ namespace Todo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Hello}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Hello}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
