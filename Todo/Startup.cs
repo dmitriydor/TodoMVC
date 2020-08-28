@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Todo.Data;
+using Todo.Repositories;
 using Todo.Services;
 
 namespace Todo
@@ -31,6 +32,7 @@ namespace Todo
             });
             services.AddScoped<ITodoItemRepository, TodoItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

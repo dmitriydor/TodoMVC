@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Models;
-using Todo.Services;
+using Todo.Repositories;
 
 namespace Todo.Controllers
 {

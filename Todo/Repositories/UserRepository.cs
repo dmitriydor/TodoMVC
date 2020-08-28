@@ -70,6 +70,8 @@ namespace Todo.Repositories
                 _context.SaveChanges();
                 return true;
             }
+
+            return false;
         }
     }
 }
