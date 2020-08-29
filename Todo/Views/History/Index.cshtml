@@ -1,18 +1,32 @@
 ﻿@model IEnumerable<TodoItem>
-@{ ViewData["Title"] = "History";}
+@{ ViewData["Title"] = "History"; }
 @foreach (var todo in Model)
 {
     <div class="card my-3">
         <div class="card-header d-flex">
-            <div class="vertical-align flex-grow-1"><span>@todo.Name</span></div>
+            <div class="vertical-align flex-grow-1">
+                <span>@todo.Name</span>
+            </div>
             @if (todo.Priority == 3)
-            {<div class="btn-heidght">Heidght</div>}
+            {
+                
+            <div class="btn-heidght">Heidght</div>
+            }
             @if (todo.Priority == 2)
-            {<div class="btn-medium">Medium</div>}
+            {
+                
+            <div class="btn-medium">Medium</div>
+            }
             @if (todo.Priority == 1)
-            {<div class="btn-low">Low</div>}
-            @if (todo.IsCompleted == true)
-            {<div class="completed">Completed</div>}
+            {
+                
+            <div class="btn-low">Low</div>
+            }
+            @if (todo.IsCompleted)
+            {
+                
+            <div class="completed">Completed</div>
+            }
         </div>
         <div class="card-body">
             <p class="card-text">@todo.Description</p>

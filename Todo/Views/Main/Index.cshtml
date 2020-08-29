@@ -5,43 +5,57 @@
         <span>@DateTime.Today.DayOfWeek @DateTime.Today.ToShortDateString()</span>
         <a class="slider-right mx-2"></a>
     </div>
-    @foreach(var todo in Model)
+    @foreach (var todo in Model)
     {
-    <div class="card my-3">
-        <div class="card-header d-flex">
-            <div class="vertical-align flex-grow-1"><span>@todo.Name</span></div>
-            @if (todo.Priority == 3)
-            {<div class="btn-heidght" >Heidght</div>}
-            @if (todo.Priority == 2)
-            {<div class="btn-medium" >Medium</div>}
-            @if (todo.Priority == 1)
-            {<div class="btn-low">Low</div>}
-            @if (todo.IsCompleted == true)
-            {<div class="completed">Completed</div>}
-        </div>
-        <div class="card-body">
-            <p class="card-text">@todo.Description</p>
-            <div class="d-flex flex-row-reverse">
-                <a asp-controller="TodoItem" asp-action="Edit" asp-route-id="@todo.Id" class="btn">Edit</a>
-                <a asp-controller="TodoItem" asp-action="Delete" asp-route-id="@todo.Id" class="btn">Delete</a>
-                @if (todo.IsCompleted == false)
+        <div class="card my-3">
+            <div class="card-header d-flex">
+                <div class="vertical-align flex-grow-1">
+                    <span>@todo.Name</span>
+                </div>
+                @if (todo.Priority == 3)
                 {
-                    <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
-                        To complete
-                    </a>
+                    
+                <div class="btn-heidght">Heidght</div>
                 }
-                else
+                @if (todo.Priority == 2)
                 {
-                    <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
-                        No completed
-                    </a>
+                    
+                <div class="btn-medium">Medium</div>
+                }
+                @if (todo.Priority == 1)
+                {
+                    
+                <div class="btn-low">Low</div>
+                }
+                @if (todo.IsCompleted)
+                {
+                    
+                <div class="completed">Completed</div>
                 }
             </div>
+            <div class="card-body">
+                <p class="card-text">@todo.Description</p>
+                <div class="d-flex flex-row-reverse">
+                    <a asp-controller="TodoItem" asp-action="Edit" asp-route-id="@todo.Id" class="btn">Edit</a>
+                    <a asp-controller="TodoItem" asp-action="Delete" asp-route-id="@todo.Id" class="btn">Delete</a>
+                    @if (todo.IsCompleted == false)
+                    {
+                        <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
+                            To complete
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="TodoItem" asp-action="ToComplete" asp-route-id="@todo.Id" class="btn">
+                            No completed
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="card-footer">
+                <span>@todo.Date.ToShortDateString()</span>
+            </div>
         </div>
-        <div class="card-footer">
-            <span>@todo.Date.ToShortDateString()</span>
-        </div>
-    </div>
     }
     <a class="nav-link mx-5" asp-controller="TodoItem" asp-action="AddTodoItem">
         <div class="text-center add-todo">+ Add To Do</div>
