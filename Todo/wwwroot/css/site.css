@@ -1,4 +1,17 @@
-﻿header { background-color: #F2D97E; }
+﻿html, body {
+    font-size: 14px;
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #F9F3F3;
+    color: #AC6A6A;
+    font-family: 'Amiko', sans-serif;
+}
+
+header {
+    background-color: #F2D97E;
+}
 
 header .navbar-brand {
     color: #AC6A6A;
@@ -9,27 +22,26 @@ header .navbar-brand {
 
 header .nav-item {
     color: #AC6A6A;
-    font-family: 'Abel', cursive;
+    font-family: 'Abel';
     font-size: 18px;
     font-weight: bold;
 }
 
-html {
-    font-size: 14px;
-    min-height: 100%;
-    position: relative;
-}
-
-body {
-    background-color: #F9F3F3;
-    color: #AC6A6A;
-    font-family: 'Amiko', sans-serif;
-    position: relative;
-}
-
 main {
-    height: auto;
+    height: 100%;
     overflow-y: auto;
+}
+
+.container {
+    height: 100%;
+}
+
+.hello {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 { font-weight: bold; }
