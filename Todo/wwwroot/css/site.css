@@ -1,4 +1,7 @@
-﻿html, body {
+﻿:focus {
+    outline: none !important;
+}
+html, body {
     font-size: 14px;
     overflow: hidden;
     margin: 0;
@@ -11,6 +14,9 @@
 
 header {
     background-color: #F2D97E;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 header .navbar-brand {
@@ -27,7 +33,17 @@ header .nav-item {
     font-weight: bold;
 }
 
+.navbar-toggler {
+    color: #AC6A6A;
+    z-index: 1;
+}
+
+.navbar-toggler:hover {
+    color: #ce7f7f;
+}
+
 main {
+    padding-top: 70px;
     height: 100%;
     overflow-y: auto;
 }
@@ -112,3 +128,13 @@ a:hover { color: #ce7f7f; }
 }
 
 .slider-left:hover, .slider-right:hover { opacity: .5; }
+
+.auth {
+    padding: 20px 0;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 500px;
+    min-width: 200px;
+}
