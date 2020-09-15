@@ -1,26 +1,20 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+﻿<ul class="navbar-nav ml-auto">
+    @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="" title="Manage">Hello @User.Identity.Name!</a>
+            <a class="nav-link" sp-controller="Account" asp-action="EditUser">@typeof(User)</a>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-page="" asp-route-returnUrl="@Url.Action("Index", "Home")">
-                <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
-            </form>
+            <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
         </li>
     }
     else
     {
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-page="">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-page="">Login</a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="Registration">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+            </li>
     }
 </ul>
