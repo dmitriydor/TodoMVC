@@ -3,7 +3,10 @@
     ViewData["title"] = "Login";
 }
 
-<div class="auth d-flex justify-content-center">
+<div class="auth">
+    <div class="auth-title">
+            <span>Login</span>
+        </div>
     <div class="auth-form">
         <form asp-action="Login" method="post">
             <div class="form-group">
@@ -20,10 +23,12 @@
                 </div>
                 <input asp-for="Password" type="password" class="form-control"/>
             </div>
-            <button class="btn btn-low" type="submit">Login</button>
-            <a class="d-block mt-3" asp-controller="Account" asp-action="Registration">
-                <span>Create new account?</span>
-            </a>
+            <div class="form-action">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <a asp-controller="Account" asp-action="Registration">
+                    <span>Create new account?</span>
+                </a>
+            </div>
         </form>
     </div>
 </div>

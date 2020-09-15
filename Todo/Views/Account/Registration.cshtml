@@ -2,7 +2,10 @@
 @{
     ViewData["title"] = "Registration";
 }
-<div class="auth d-flex justify-content-center">
+<div class="auth">
+    <div class="auth-title">
+        <span>Registration</span>
+    </div>
     <div class="auth-form">
         <form asp-action="Registration" method="post">
             <div class="form-group">
@@ -40,7 +43,12 @@
                 </div>
                 <input asp-for="ConfirmPassword" type="password" class="form-control"/>
             </div>
-            <button class="btn btn-low" type="submit">Registration</button>
+            <div class="form-action">
+                <button class="btn btn-primary" type="submit">Registration</button>
+                <a asp-controller="Account" asp-action="Login">
+                    <span>An account already exists?</span>
+                </a>
+            </div>
         </form>
     </div>
 </div>
