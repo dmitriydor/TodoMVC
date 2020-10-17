@@ -37,7 +37,7 @@ namespace Todo.Controllers
                 var user = await _userRepository.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    _userRepository.Create(
+                    _userRepository.InsertAsync(
                         new User
                         {
                             Email = model.Email,
@@ -82,14 +82,8 @@ namespace Todo.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> EditUser(string email)
-        {
-            return BadRequest();
-        }
-
         [HttpPost]
-        public IActionResult EditUser(User user)
+        public async Task<IActionResult> EditUser(string email)
         {
             return BadRequest();
         }

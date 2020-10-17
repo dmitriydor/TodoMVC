@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Todo.Data;
 using Todo.Models;
 
@@ -19,48 +15,36 @@ namespace Todo.Repositories
             _context = context;
         }
 
-        public IQueryable<User> Users => _context.Users;
-
-        public bool Create(User user)
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            var userDb = _context.Users.FirstOrDefault(u => u.Email == user.Email);
-            if (userDb == null)
-            {
-                _context.Add(user);
-                _context.SaveChanges();
-                return true;
-            }
-
-            return false;
+            return await _context.Users.ToListAsync();
         }
 
-        public bool Delete(string email)
+        public async Task<bool> InsertAsync(User user)
         {
-            var userDb = _context.Users.FirstOrDefault(u => u.Email == email);
-            if (userDb != null)
-            {
-                _context.Users.Remove(userDb);
-                _context.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var userDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (userDb != null) return false;
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public bool Update(User user)
+        public async Task<bool> DeleteAsync(string email)
         {
-            var userDb = _context.Users.FirstOrDefault(u => u.Email == user.Email);
-            if (userDb != null)
-            {
-                userDb.About = user.About;
-                userDb.DateOfBirth = user.DateOfBirth;
-                userDb.Firstname = user.Firstname;
-                userDb.Lastname = user.Lastname;
-                _context.SaveChanges();
-                return true;
-            }
+            var userDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (userDb == null) return false;
+            _context.Users.Remove(userDb);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
-            return false;
+        public async Task<bool> UpdateAsync(User user)
+        {
+            var userDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (userDb == null) return false;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

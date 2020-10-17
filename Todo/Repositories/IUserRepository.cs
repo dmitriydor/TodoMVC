@@ -1,13 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Todo.Models;
 
 namespace Todo.Repositories
 {
     public interface IUserRepository
     {
-        public IQueryable<User> Users { get; }
-        public bool Create(User user);
-        public bool Update(User user);
-        public bool Delete(string email);
+        public Task<List<User>> GetAllUsersAsync();
+        public Task<bool> InsertAsync(User user);
+        public Task<bool> UpdateAsync(User user);
+        public Task<bool> DeleteAsync(string email);
     }
 }

@@ -2,7 +2,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <a class="nav-link" sp-controller="Account" asp-action="EditUser">@typeof(User)</a>
+            <a class="nav-link" asp-controller="Account" asp-action="EditUser"></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
@@ -10,11 +10,11 @@
     }
     else
     {
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Account" asp-action="Registration">Registration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Registration">Registration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+        </li>
     }
 </ul>
